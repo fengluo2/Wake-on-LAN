@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Wake on LAN</string>
+
+    <string name="activity_license">License</string>
+
+    <string name="action_remove_all">Remove All</string>
+    <string name="action_import">Import</string>
+    <string name="action_export">Export</string>
+    <string name="action_license">License</string>
+    <string name="action_about">About</string>
+
+    <string name="link_list_fragment_label">Link List</string>
+    <string name="link_edit_fragment_label">Edit Link</string>
+
+    <string name="action_link_list_edit">Edit</string>
+    <string name="action_link_list_remove">Remove</string>
+    <string name="action_link_list_send">Send WoL</string>
+
+    <string name="button_add_link">Add Link</string>
+    <string name="additional">Additional</string>
+    <string name="save_link">Save Link</string>
+    <string name="link_edit_name_label">Name:</string>
+    <string name="link_edit_name_hint">The name that appears in the list</string>
+    <string name="link_edit_type_label">Link Type:</string>
+    <string name="link_edit_type_direct">Direct</string>
+    <string name="link_edit_type_proxy">Proxy</string>
+    <string name="link_edit_proxy_address_label">Proxy Address:</string>
+    <string name="link_edit_proxy_address_hint">127.0.0.1</string>
+    <string name="link_edit_proxy_port_label">Proxy Port:</string>
+    <string name="link_edit_proxy_port_hint">22</string>
+    <string name="link_edit_proxy_login_type_label">Proxy Login Type:</string>
+    <string name="link_edit_proxy_login_type_passwd">Password</string>
+    <string name="link_edit_proxy_login_type_private">Private key</string>
+    <string name="link_edit_proxy_login_user_label">Proxy Login User:</string>
+    <string name="link_edit_proxy_login_user_hint">root</string>
+    <string name="link_edit_proxy_login_passwd_label">Proxy Login Passwd:</string>
+    <string name="link_edit_proxy_login_passwd_hint">123456</string>
+    <string name="link_edit_proxy_login_private_label">Proxy Login private Key:</string>
+    <string name="link_edit_proxy_login_private_hint">65y54y54y34</string>
+    <string name="link_edit_direct_ip_label">Host IP:</string>
+    <string name="link_edit_direct_ip_hint">127.0.0.1</string>
+    <string name="link_edit_direct_mac_label">Host MAC:</string>
+    <string name="link_edit_direct_mac_hint">00:00:00:00:00:00</string>
+    <string name="link_edit_remark_label">Remark:</string>
+    <string name="link_edit_remark_hint">Here is a note</string>
+
+    <string name="toast_export_fail">The export failed for an unknown reason</string>
+    <string name="toast_export_success">The export is successful, and the file path is: %s</string>
+    <string name="toast_send_wal_fail">Failed to send WOL packets: %s</string>
+    <string name="toast_send_wal_success">"A WOL package has been sent</string>
+    <string name="toast_not_support_system">Unsupported system types</string>
+    <string name="toast_not_support_system_info">Unsupported system types: %s</string>
+</resources>

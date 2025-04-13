@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="checkout_installed">opkg list-installed | grep wakeonlan</string>
+    <string name="install_wol">opkg install wakeonlan</string>
+    <string name="send_wol">wakeonlan -i %s %s</string>
+</resources>

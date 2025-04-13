@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="checkout_installed">dpkg -l | grep wakeonlan</string>
+    <string name="install_wol">apt install wakeonlan</string>
+    <string name="send_wol">wakeonlan -i %s %s</string>
+</resources>

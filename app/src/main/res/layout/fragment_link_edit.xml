@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".LinkEditFragment">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+            <TextView
+                    android:id="@+id/link_edit_name_label"
+                    android:layout_width="@dimen/link_edit_label_with"
+                    android:layout_height="wrap_content"
+                    android:text="@string/link_edit_name_label"/>
+
+            <EditText
+                    android:id="@+id/link_edit_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/link_edit_name_label"
+                    android:hint="@string/link_edit_name_hint"
+                    android:autofillHints=""
+                    android:inputType="text"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+            <TextView
+                    android:id="@+id/link_edit_type_label"
+                    android:layout_width="@dimen/link_edit_label_with"
+                    android:layout_height="wrap_content"
+                    android:text="@string/link_edit_type_label"/>
+
+            <RadioGroup
+                    android:id="@+id/link_edit_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:labelFor="@id/link_edit_type_label"
+                    android:autofillHints=""
+                    android:inputType="text"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/link_edit_proxy_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                <TextView
+                        android:id="@+id/link_edit_proxy_address_label"
+                        android:layout_width="@dimen/link_edit_label_with"
+                        android:layout_height="wrap_content"
+                        android:text="@string/link_edit_proxy_address_label"/>
+
+                <EditText
+                        android:id="@+id/link_edit_proxy_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:labelFor="@id/link_edit_proxy_address_label"
+                        android:hint="@string/link_edit_proxy_address_hint"
+                        android:autofillHints=""
+                        android:inputType="text"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                <TextView
+                        android:id="@+id/link_edit_proxy_port_label"
+                        android:layout_width="@dimen/link_edit_label_with"
+                        android:layout_height="wrap_content"
+                        android:text="@string/link_edit_proxy_port_label"/>
+
+                <EditText
+                        android:id="@+id/link_edit_proxy_port"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:labelFor="@id/link_edit_proxy_port_label"
+                        android:hint="@string/link_edit_proxy_port_hint"
+                        android:autofillHints=""
+                        android:inputType="number"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                <TextView
+                        android:id="@+id/link_edit_proxy_login_type_label"
+                        android:layout_width="@dimen/link_edit_label_with"
+                        android:layout_height="wrap_content"
+                        android:text="@string/link_edit_proxy_login_type_label"/>
+
+                <RadioGroup
+                        android:id="@+id/link_edit_proxy_login_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:labelFor="@id/link_edit_proxy_login_type_label"
+                        android:autofillHints=""
+                        android:inputType="text"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                <TextView
+                        android:id="@+id/link_edit_proxy_login_user_label"
+                        android:layout_width="@dimen/link_edit_label_with"
+                        android:layout_height="wrap_content"
+                        android:text="@string/link_edit_proxy_login_user_label"/>
+
+                <EditText
+                        android:id="@+id/link_edit_proxy_login_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:labelFor="@id/link_edit_proxy_login_user_label"
+                        android:hint="@string/link_edit_proxy_login_user_hint"
+                        android:autofillHints=""
+                        android:inputType="text"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/link_edit_proxy_login_passwd_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                <TextView
+                        android:id="@+id/link_edit_proxy_login_passwd_label"
+                        android:layout_width="@dimen/link_edit_label_with"
+                        android:layout_height="wrap_content"
+                        android:text="@string/link_edit_proxy_login_passwd_label"/>
+
+                <EditText
+                        android:id="@+id/link_edit_proxy_login_passwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:labelFor="@id/link_edit_proxy_login_passwd_label"
+                        android:hint="@string/link_edit_proxy_login_passwd_hint"
+                        android:autofillHints=""
+                        android:inputType="textPassword"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/link_edit_proxy_login_private_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                <TextView
+                        android:id="@+id/link_edit_proxy_login_private_label"
+                        android:layout_width="@dimen/link_edit_label_with"
+                        android:layout_height="wrap_content"
+                        android:text="@string/link_edit_proxy_login_private_label"/>
+
+                <EditText
+                        android:id="@+id/link_edit_proxy_login_private"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:labelFor="@id/link_edit_proxy_login_private_label"
+                        android:hint="@string/link_edit_proxy_login_private_hint"
+                        android:autofillHints=""
+                        android:inputType="textMultiLine"
+                        android:minLines="3"
+                        android:maxLines="5"
+                        android:gravity="top|start"
+                        android:scrollbars="vertical"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+            <TextView
+                    android:id="@+id/link_edit_direct_ip_label"
+                    android:layout_width="@dimen/link_edit_label_with"
+                    android:layout_height="wrap_content"
+                    android:text="@string/link_edit_direct_ip_label"/>
+
+            <EditText
+                    android:id="@+id/link_edit_direct_ip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/link_edit_direct_ip_label"
+                    android:hint="@string/link_edit_direct_ip_hint"
+                    android:autofillHints=""
+                    android:inputType="text"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+            <TextView
+                    android:id="@+id/link_edit_direct_mac_label"
+                    android:layout_width="@dimen/link_edit_label_with"
+                    android:layout_height="wrap_content"
+                    android:text="@string/link_edit_direct_mac_label"/>
+
+            <EditText
+                    android:id="@+id/link_edit_direct_mac"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/link_edit_direct_mac_label"
+                    android:hint="@string/link_edit_direct_mac_hint"
+                    android:autofillHints=""
+                    android:inputType="text"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+            <TextView
+                    android:id="@+id/link_edit_remark_label"
+                    android:layout_width="@dimen/link_edit_label_with"
+                    android:layout_height="wrap_content"
+                    android:text="@string/link_edit_remark_label"/>
+
+            <EditText
+                    android:id="@+id/link_edit_remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/link_edit_remark_label"
+                    android:hint="@string/link_edit_remark_hint"
+                    android:autofillHints=""
+                    android:inputType="text"/>
+        </LinearLayout>
+
+
+        <Button
+                android:id="@+id/button_save_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save_link"
+                android:layout_marginTop="50dp"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

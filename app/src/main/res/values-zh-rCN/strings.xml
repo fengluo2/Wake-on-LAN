@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Wake on LAN</string>
+
+    <string name="activity_license">许可证</string>
+
+    <string name="action_remove_all">删除所有</string>
+    <string name="action_import">导入</string>
+    <string name="action_export">导出</string>
+    <string name="action_license">许可证</string>
+    <string name="action_about">关于</string>
+
+    <string name="link_list_fragment_label">连接列表</string>
+    <string name="link_edit_fragment_label">编辑连接</string>
+
+    <string name="action_link_list_edit">编辑</string>
+    <string name="action_link_list_remove">删除</string>
+    <string name="action_link_list_send">发送 Wol 包</string>
+
+    <string name="button_add_link">增加连接</string>
+    <string name="additional">更多</string>
+    <string name="save_link">保存连接</string>
+    <string name="link_edit_name_label">名字:</string>
+    <string name="link_edit_name_hint">列表中显示的名字</string>
+    <string name="link_edit_type_label">连接类型:</string>
+    <string name="link_edit_type_direct">直连</string>
+    <string name="link_edit_type_proxy">代理</string>
+    <string name="link_edit_proxy_address_label">代理主机地址:</string>
+    <string name="link_edit_proxy_address_hint">127.0.0.1</string>
+    <string name="link_edit_proxy_port_label">代理主机端口:</string>
+    <string name="link_edit_proxy_port_hint">22</string>
+    <string name="link_edit_proxy_login_type_label">代理登录类型:</string>
+    <string name="link_edit_proxy_login_type_passwd">密码</string>
+    <string name="link_edit_proxy_login_type_private">密钥</string>
+    <string name="link_edit_proxy_login_user_label">代理登录用户:</string>
+    <string name="link_edit_proxy_login_user_hint">root</string>
+    <string name="link_edit_proxy_login_passwd_label">代理登录密码:</string>
+    <string name="link_edit_proxy_login_passwd_hint">123456</string>
+    <string name="link_edit_proxy_login_private_label">代理登录私钥:</string>
+    <string name="link_edit_proxy_login_private_hint">65y54y54y34</string>
+    <string name="link_edit_direct_ip_label">主机IP:</string>
+    <string name="link_edit_direct_ip_hint">127.0.0.1</string>
+    <string name="link_edit_direct_mac_label">主机MAC:</string>
+    <string name="link_edit_direct_mac_hint">00:00:00:00:00:00</string>
+    <string name="link_edit_remark_label">备注:</string>
+    <string name="link_edit_remark_hint">这是一个备注</string>
+
+    <string name="toast_export_fail">导出失败，原因未知</string>
+    <string name="toast_export_success">导出成功，文件路径: %s</string>
+    <string name="toast_send_wal_fail">发送 WOL 包失败: %s</string>
+    <string name="toast_send_wal_success">"已发送 WOL 包</string>
+    <string name="toast_not_support_system">不支持的系统类型</string>
+    <string name="toast_not_support_system_info">不支持的系统类型: %s</string>
+
+</resources>

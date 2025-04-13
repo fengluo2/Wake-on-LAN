@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
+            app:startDestination="@id/LinkListFragment">
+
+    <fragment
+            android:id="@+id/LinkListFragment"
+            android:name="com.thirdworlds.wakeonlan.LinkListFragment"
+            android:label="@string/link_list_fragment_label"
+            tools:layout="@layout/fragment_link_list">
+
+        <action
+                android:id="@+id/action_LinkListFragment_to_LinkEditFragment"
+                app:destination="@id/LinkEditFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/LinkEditFragment"
+            android:name="com.thirdworlds.wakeonlan.LinkEditFragment"
+            android:label="@string/link_edit_fragment_label"
+            tools:layout="@layout/fragment_link_edit">
+
+        <action
+                android:id="@+id/action_LinkEditFragment_to_LinkListFragment"
+                app:destination="@id/LinkListFragment">
+            <argument
+                    android:name="id"
+                    app:argType="integer"/>
+        </action>
+    </fragment>
+</navigation>

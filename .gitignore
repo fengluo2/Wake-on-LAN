@@ -1,0 +1,63 @@
+# ======================
+# Gradle & Android Studio
+# ======================
+
+.gradle/
+.idea/
+.local.properties
+*.iml
+build/
+captures/
+.externalNativeBuild/
+
+# IntelliJ
+*.iws
+*.ipr
+*.idea/
+
+# Android Studio 3.x
+.cxx/
+
+# Keystore files
+*.jks
+*.keystore
+
+# Logs
+*.log
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Kotlin
+*.kotlin_module
+
+# Packaging
+app/debug
+app/release
+*.apk
+*.ap_
+
+# NDK
+obj/
+
+# Crashlytics
+crashlytics.properties
+fabric.properties
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Firebase
+google-services.json
+
+# local.properties file (sdk.dir path)
+local.properties
+
+# Room
+app/schemas
