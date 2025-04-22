@@ -11,7 +11,7 @@ jobs:
     steps:
       # Checkout 代码
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       # 获取上次发布的标签（如果没有标签则 fallback 到 HEAD）
       - name: Get last release tag
@@ -54,9 +54,13 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
+          
+          # 确保推送到主分支或者指定的分支
           git add CHANGELOG.md
           git commit -m "Update CHANGELOG for release ${{ github.ref }}"
-          git push origin ${{ github.ref }}
+          
+          # 推送到指定分支（如 `main` 或 `master`）
+          git push origin HEAD:main  # 这里可以修改为目标分支名称（如 `main`）
 
   build:
     runs-on: ubuntu-latest
