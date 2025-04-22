@@ -13,16 +13,38 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 使用 auto-changelog 工具生成 Changelog
+      # 获取上次发布的标签
+      - name: Get last release tag
+        id: last_release
+        run: |
+          LAST_RELEASE_TAG=$(git describe --tags --abbrev=0)
+          echo "Last release tag: $LAST_RELEASE_TAG"
+          echo "LAST_RELEASE_TAG=$LAST_RELEASE_TAG" >> $GITHUB_ENV
+
+      # 获取当前标签
+      - name: Get current tag
+        id: current_tag
+        run: |
+          CURRENT_TAG=${GITHUB_REF#refs/tags/}
+          echo "Current tag: $CURRENT_TAG"
+          echo "CURRENT_TAG=$CURRENT_TAG" >> $GITHUB_ENV
+
+      # 生成更新说明并更新 CHANGELOG.md
       - name: Generate Changelog
         run: |
-          # 安装 auto-changelog
-          npm install -g auto-changelog
+          # 获取从上次发布到当前标签之间的提交信息
+          RELEASE_NOTES=$(git log $LAST_RELEASE_TAG..$CURRENT_TAG --pretty=format:'- %s' --no-merges)
+          
+          # 如果没有更新内容，显示无更新
+          if [ -z "$RELEASE_NOTES" ]; then
+            RELEASE_NOTES="No new changes."
+          fi
 
-          # 生成 Changelog 文件
-          auto-changelog -p --unreleased --template markdown
+          # 更新 CHANGELOG.md
+          echo "## [$CURRENT_TAG] - $(date +'%Y-%m-%d')" > CHANGELOG.md
+          echo "$RELEASE_NOTES" >> CHANGELOG.md
 
-      # 提交更新后的 Changelog
+      # 提交更新后的 CHANGELOG.md
       - name: Commit and push Changelog
         run: |
           git config --global user.name "GitHub Actions"
