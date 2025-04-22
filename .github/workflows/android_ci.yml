@@ -13,11 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 获取上次发布的标签
+      # 获取上次发布的标签（如果没有标签则 fallback 到 HEAD）
       - name: Get last release tag
         id: last_release
         run: |
-          LAST_RELEASE_TAG=$(git describe --tags --abbrev=0)
+          LAST_RELEASE_TAG=$(git describe --tags --abbrev=0 || echo "HEAD")
           echo "Last release tag: $LAST_RELEASE_TAG"
           echo "LAST_RELEASE_TAG=$LAST_RELEASE_TAG" >> $GITHUB_ENV
 
@@ -33,7 +33,12 @@ jobs:
       - name: Generate Changelog
         run: |
           # 获取从上次发布到当前标签之间的提交信息
-          RELEASE_NOTES=$(git log $LAST_RELEASE_TAG..$CURRENT_TAG --pretty=format:'- %s' --no-merges)
+          if [ "$LAST_RELEASE_TAG" = "HEAD" ]; then
+            RELEASE_NOTES="No previous release found. Using all commits."
+            RELEASE_NOTES+="\n$(git log --pretty=format:'- %s' --no-merges)"
+          else
+            RELEASE_NOTES=$(git log $LAST_RELEASE_TAG..$CURRENT_TAG --pretty=format:'- %s' --no-merges)
+          fi
           
           # 如果没有更新内容，显示无更新
           if [ -z "$RELEASE_NOTES" ]; then
