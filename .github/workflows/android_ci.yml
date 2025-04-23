@@ -78,10 +78,22 @@ jobs:
           changelog=$(cat CHANGELOG.md)
           echo "changelog=$changelog" >> $GITHUB_ENV
 
+      - name: Copy signed apks to cus path
+        id: finally_apk
+        run: |
+          mkdir -p ./apk
+          cp ${{ steps.sign_apk_release.outputs.signedFile }} ./apk/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_release.apk
+          cp ${{ steps.sign_apk_debug.outputs.signedFile }} ./apk/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_debug.apk
+          
+          echo "apk_release=./apk/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_release.apk" >> $GITHUB_OUTPUT
+          echo "apk_debug=./apk/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_debug.apk" >> $GITHUB_OUTPUT
+          
+          echo ls ./apk
+
       - name: log file
         run: |
-          echo "${{ steps.sign_apk_release.outputs.signedFile }}"
-          echo "${{ steps.sign_apk_debug.outputs.signedFile }}"
+          echo "${{ steps.finally_apk.outputs.apk_release }}"
+          echo "${{ steps.finally_apk.outputs.apk_debug }}"
 
 #      - name: Create GitHub Release
 #        uses: softprops/action-gh-release@v2
