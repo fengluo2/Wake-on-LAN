@@ -54,22 +54,22 @@ jobs:
         uses: ilharp/sign-android-release@v2
         id: sign_apk_release
         with:
-          release-file: app/build/outputs/apk/release  # 生成的未签名 APK
-          keystore-base64: ${{ secrets.SIGNING_STORE_JKS }}  # 从 GitHub Secrets 中加载 keystore 文件的 Base64 编码
-          keystore-password: ${{ secrets.SIGNING_STORE_PASSWORD }}  # 从 GitHub Secrets 中加载 keystore 密码
-          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}  # 从 GitHub Secrets 中加载密钥别名
-          key-password: ${{ secrets.SIGNING_KEY_PASSWD }}  # 从 GitHub Secrets 中加载密钥密码
+          releaseDir: app/build/outputs/apk/release  # 生成的未签名 APK
+          signingKey: ${{ secrets.SIGNING_STORE_JKS }}  # 从 GitHub Secrets 中加载 keystore 文件的 Base64 编码
+          keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}  # 从 GitHub Secrets 中加载 keystore 密码
+          keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}  # 从 GitHub Secrets 中加载密钥别名
+          keyPassword: ${{ secrets.SIGNING_KEY_PASSWD }}  # 从 GitHub Secrets 中加载密钥密码
           buildToolsVersion: 35.0.0
 
       - name: Sign Android debug apk
         uses: ilharp/sign-android-release@v2
         id: sign_apk_debug
         with:
-          release-file: app/build/outputs/apk/debug # 生成的未签名 APK
-          keystore-base64: ${{ secrets.SIGNING_STORE_JKS }}  # 从 GitHub Secrets 中加载 keystore 文件的 Base64 编码
-          keystore-password: ${{ secrets.SIGNING_STORE_PASSWORD }}  # 从 GitHub Secrets 中加载 keystore 密码
-          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}  # 从 GitHub Secrets 中加载密钥别名
-          key-password: ${{ secrets.SIGNING_KEY_PASSWD }}  # 从 GitHub Secrets 中加载密钥密码
+          releaseDir: app/build/outputs/apk/debug # 生成的未签名 APK
+          signingKey: ${{ secrets.SIGNING_STORE_JKS }}  # 从 GitHub Secrets 中加载 keystore 文件的 Base64 编码
+          keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}  # 从 GitHub Secrets 中加载 keystore 密码
+          keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}  # 从 GitHub Secrets 中加载密钥别名
+          keyPassword: ${{ secrets.SIGNING_KEY_PASSWD }}  # 从 GitHub Secrets 中加载密钥密码
           buildToolsVersion: 35.0.0
 
       - name: Read CHANGELOG.md
