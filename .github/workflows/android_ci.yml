@@ -40,7 +40,7 @@ jobs:
         id: check_release
         run: |
           TAG_NAME="${{ steps.app_info.outputs.version_name }}"
-          RELEASE_URL="https://api.github.com/repos/${{ github.repository }}/releases/tags/$TAG_NAME"
+          RELEASE_URL="https://api.github.com/repos/${{ github.repository }}/releases/tags/v$TAG_NAME"
           
           echo "check $RELEASE_URL exist"
           
