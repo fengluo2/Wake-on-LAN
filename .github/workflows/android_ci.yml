@@ -36,7 +36,28 @@ jobs:
           echo "APK_NAME=$APK_NAME" >> $GITHUB_ENV
           echo "apk_name=$APK_NAME" >> $GITHUB_OUTPUT
 
+      - name: Check release tag
+        id: check_release
+        run: |
+          TAG_NAME="${{ steps.app_info.outputs.version_name }}"
+          RELEASE_URL="https://api.github.com/repos/${{ github.repository }}/releases/tags/v$TAG_NAME"
+          
+          echo "check $RELEASE_URL exist"
+          
+          HTTP_RESPONSE=$(curl -s -o response.json -w "%{http_code}" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "$RELEASE_URL")
+          
+          echo "HTTP code：$HTTP_RESPONSE"
+          
+          if [ "$HTTP_RESPONSE" = "200" ]; then
+            echo "release_already_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "release_already_exists=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Build with Gradle
+        if: steps.check_release.outputs.release_already_exists == 'false'
         run: ./gradlew assembleDebug assembleRelease
 
       - name: Check if release APK exists
@@ -51,6 +72,7 @@ jobs:
           fi
 
       - name: Sign Android release apk
+        if: steps.check_release.outputs.release_already_exists == 'false'
         uses: ilharp/sign-android-release@v2
         id: sign_apk_release
         with:
@@ -62,6 +84,7 @@ jobs:
           buildToolsVersion: 35.0.0
 
       - name: Sign Android debug apk
+        if: steps.check_release.outputs.release_already_exists == 'false'
         uses: ilharp/sign-android-release@v2
         id: sign_apk_debug
         with:
@@ -73,12 +96,14 @@ jobs:
           buildToolsVersion: 35.0.0
 
       - name: Read CHANGELOG.md
+        if: steps.check_release.outputs.release_already_exists == 'false'
         id: changelog
         run: |
           changelog=$(cat CHANGELOG.md)
           echo "changelog=$changelog" >> $GITHUB_ENV
 
       - name: Copy signed apks to cus path
+        if: steps.check_release.outputs.release_already_exists == 'false'
         id: finally_apk
         run: |
           mkdir -p ./apk
@@ -91,11 +116,13 @@ jobs:
           echo ls ./apk
 
       - name: log file
+        if: steps.check_release.outputs.release_already_exists == 'false'
         run: |
           echo "${{ steps.finally_apk.outputs.apk_release }}"
           echo "${{ steps.finally_apk.outputs.apk_debug }}"
 
       - name: Create GitHub Release
+        if: steps.check_release.outputs.release_already_exists == 'false'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: "v${{ steps.app_info.outputs.version_name }}"  # 版本号作为 tag_name
