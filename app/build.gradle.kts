@@ -28,10 +28,33 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("signingConfig") {
+            val storeFilePath =
+                if (project.hasProperty("signing.storeFile")) project.property("signing.storeFile") as String else null
+            if (storeFilePath != null) {
+                storeFile = file(storeFilePath)
+                storePassword = project.findProperty("signing.storePassword") as String? ?: ""
+                keyAlias = project.findProperty("signing.keyAlias") as String? ?: ""
+                keyPassword = project.findProperty("signing.storePassword") as String? ?: ""
+                enableV2Signing = (project.findProperty("signing.v2SigningEnabled") as String?)?.toBoolean() ?: true
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            if (signingConfigs.findByName("signingConfig")?.storeFile?.exists() == true) {
+                signingConfig = signingConfigs.getByName("signingConfig")
+            }
+        }
+
+        debug {
+            if (signingConfigs.findByName("signingConfig")?.storeFile?.exists() == true) {
+                signingConfig = signingConfigs.getByName("signingConfig")
+            }
         }
     }
     compileOptions {
