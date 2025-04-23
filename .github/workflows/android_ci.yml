@@ -36,7 +36,28 @@ jobs:
           echo "APK_NAME=$APK_NAME" >> $GITHUB_ENV
           echo "apk_name=$APK_NAME" >> $GITHUB_OUTPUT
 
+      - name: Check release tag
+        id: check_release
+        run: |
+          TAG_NAME="${{ steps.app_info.outputs.version_name }}"
+          RELEASE_URL="https://api.github.com/repos/${{ github.repository }}/releases/tags/$TAG_NAME"
+          
+          echo "check $RELEASE_URL exist"
+          
+          HTTP_RESPONSE=$(curl -s -o response.json -w "%{http_code}" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "$RELEASE_URL")
+          
+          echo "HTTP code：$HTTP_RESPONSE"
+          
+          if [ "$HTTP_RESPONSE" = "200" ]; then
+            echo "release_already_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "release_already_exists=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Build with Gradle
+        if: steps.check_release.outputs.release_already_exists == 'false'
         run: ./gradlew assembleDebug assembleRelease
 
       - name: Check if release APK exists
