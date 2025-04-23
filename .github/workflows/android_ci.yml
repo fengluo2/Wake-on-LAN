@@ -47,7 +47,17 @@ jobs:
           echo "apk_name=$APK_NAME" >> $GITHUB_OUTPUT
 
       - name: Build with Gradle
-        run: ./gradlew assembleDebug assembleRelease -Psigning.storeFile=signing_key.p12 -Psigning.storePassword=${{ secrets.SIGNING_STORE_PASSWORD }} -Psigning.keyAlias=${{ secrets.SIGNING_KEY_ALIAS }} -Psigning.v2SigningEnabled=true
+        run: ./gradlew assembleDebug assembleRelease
+
+      - name: Sign Android release apk
+        uses: r0adkll/sign-android-release@v1
+        id: sign_apk_release
+        with:
+          release-file: app/build/outputs/apk/release/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_release.apk  # 生成的未签名 APK
+          keystore-base64: ${{ secrets.SIGNING_STORE_JKS }}  # 从 GitHub Secrets 中加载 keystore 文件的 Base64 编码
+          keystore-password: ${{ secrets.SIGNING_STORE_PASSWORD }}  # 从 GitHub Secrets 中加载 keystore 密码
+          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}  # 从 GitHub Secrets 中加载密钥别名
+          key-password: ${{ secrets.SIGNING_KEY_PASSWD }}  # 从 GitHub Secrets 中加载密钥密码
 
       - name: Check if release APK exists
         run: |
@@ -60,17 +70,32 @@ jobs:
             exit 1
           fi
 
+      - name: Sign Android debug apk
+        uses: r0adkll/sign-android-release@v1
+        id: sign_apk_debug
+        with:
+          release-file: app/build/outputs/apk/release/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_debug.apk  # 生成的未签名 APK
+          keystore-base64: ${{ secrets.SIGNING_STORE_JKS }}  # 从 GitHub Secrets 中加载 keystore 文件的 Base64 编码
+          keystore-password: ${{ secrets.SIGNING_STORE_PASSWORD }}  # 从 GitHub Secrets 中加载 keystore 密码
+          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}  # 从 GitHub Secrets 中加载密钥别名
+          key-password: ${{ secrets.SIGNING_KEY_PASSWD }}  # 从 GitHub Secrets 中加载密钥密码
+
       - name: Read CHANGELOG.md
         id: changelog
         run: |
           changelog=$(cat CHANGELOG.md)
           echo "changelog=$changelog" >> $GITHUB_ENV
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: "v${{ steps.app_info.outputs.version_name }}"  # 版本号作为 tag_name
-          body: ${{ env.changelog }}
-          files: |
-            app/build/outputs/apk/release/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_release.apk
-            app/build/outputs/apk/debug/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_debug.apk
+      - name: log file
+        run: |
+          echo "${{ steps.sign_apk_release.outputs.signedReleaseFile }}"
+          echo "${{ steps.sign_apk_debug.outputs.signedReleaseFile }}"
+
+#      - name: Create GitHub Release
+#        uses: softprops/action-gh-release@v2
+#        with:
+#          tag_name: "v${{ steps.app_info.outputs.version_name }}"  # 版本号作为 tag_name
+#          body: ${{ env.changelog }}
+#          files: |
+#            app/build/outputs/apk/release/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_release.apk
+#            app/build/outputs/apk/debug/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_debug.apk
