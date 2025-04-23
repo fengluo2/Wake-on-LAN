@@ -3,7 +3,7 @@ name: Android CI
 on:
   pull_request:
     branches: [ "main" ]
-    types: [closed]
+    types: [ closed ]
 
 jobs:
   build:
@@ -60,12 +60,17 @@ jobs:
             exit 1
           fi
 
+      - name: Read CHANGELOG.md
+        id: changelog
+        run: |
+          changelog=$(cat CHANGELOG.md)
+          echo "changelog=$changelog" >> $GITHUB_ENV
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: "v${{ steps.app_info.outputs.version_name }}"  # 版本号作为 tag_name
-          body: |
-            $(cat CHANGELOG.md)
+          body: ${{ env.changelog }}
           files: |
             app/build/outputs/apk/release/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_release.apk
             app/build/outputs/apk/debug/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_debug.apk

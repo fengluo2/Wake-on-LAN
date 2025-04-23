@@ -127,7 +127,8 @@ object SendWolUtil {
                     ssh.executeCommand(commandMap["install_wol"]!!)
                 }
 
-                val sendCommand = String.format(commandMap["send_wol"]!!, link.directIp, link.directMac)
+                val sendCommand =
+                    String.format(commandMap["send_wol"]!!, link.directIp!!.getData(), link.directMac!!.getData())
                 ssh.executeCommand(sendCommand)
 
                 ssh.close()
