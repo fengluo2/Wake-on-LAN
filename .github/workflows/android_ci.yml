@@ -95,11 +95,11 @@ jobs:
           echo "${{ steps.finally_apk.outputs.apk_release }}"
           echo "${{ steps.finally_apk.outputs.apk_debug }}"
 
-#      - name: Create GitHub Release
-#        uses: softprops/action-gh-release@v2
-#        with:
-#          tag_name: "v${{ steps.app_info.outputs.version_name }}"  # 版本号作为 tag_name
-#          body: ${{ env.changelog }}
-#          files: |
-#            app/build/outputs/apk/release/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_release.apk
-#            app/build/outputs/apk/debug/${{ steps.app_info.outputs.apk_name }}_v${{ steps.app_info.outputs.version_name }}_debug.apk
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "v${{ steps.app_info.outputs.version_name }}"  # 版本号作为 tag_name
+          body: ${{ env.changelog }}
+          files: |
+            ${{ steps.finally_apk.outputs.apk_release }}
+            ${{ steps.finally_apk.outputs.apk_debug }}
