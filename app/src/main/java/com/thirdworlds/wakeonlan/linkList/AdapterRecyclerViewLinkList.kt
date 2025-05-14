@@ -21,7 +21,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AdapterRecyclerViewLinkList(private val itemList: List<Link>, private val navController: NavController) :
+class AdapterRecyclerViewLinkList(
+    private val itemList: List<Link>,
+    private val navController: NavController
+) :
     RecyclerView.Adapter<AdapterRecyclerViewLinkList.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -33,7 +36,8 @@ class AdapterRecyclerViewLinkList(private val itemList: List<Link>, private val 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_link_list, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_link_list, parent, false)
         return ViewHolder(view)
     }
 
@@ -50,7 +54,10 @@ class AdapterRecyclerViewLinkList(private val itemList: List<Link>, private val 
                     R.id.action_link_list_edit -> {
                         val bundle = Bundle()
                         bundle.putInt("id", holder.id)
-                        navController.navigate(R.id.action_LinkListFragment_to_LinkEditFragment, bundle)
+                        navController.navigate(
+                            R.id.action_LinkListFragment_to_LinkEditFragment,
+                            bundle
+                        )
                         true
                     }
 
@@ -66,12 +73,20 @@ class AdapterRecyclerViewLinkList(private val itemList: List<Link>, private val 
                         CoroutineScope(Dispatchers.IO).launch {
                             try {
                                 SendWolUtil.sendWal(item, holder.context)
-                                ToastUtil.showToast(it.context, getString(it.context, R.string.toast_send_wal_success))
+                                ToastUtil.showToast(
+                                    it.context,
+                                    getString(it.context, R.string.toast_send_wal_success)
+                                )
                             } catch (e: Exception) {
                                 Log.e(this::class.simpleName, "发送 WOL 包失败: ${e.message}", e)
                                 ToastUtil.showToast(
                                     it.context,
-                                    String.format(getString(it.context, R.string.toast_send_wal_fail), e.message)
+                                    String.format(
+                                        getString(
+                                            it.context,
+                                            R.string.toast_send_wal_fail
+                                        ), e.message
+                                    )
                                 )
                             }
                         }

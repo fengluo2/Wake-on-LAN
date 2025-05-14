@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.Toast
 import androidx.core.view.allViews
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -162,8 +161,10 @@ class LinkEditFragment : Fragment() {
             link.proxyPort = binding.linkEditProxyPort.text.toString().toIntOrNull()
             link.proxyLoginType = getRadioButtonTag(binding.linkEditProxyLoginType)
             link.proxyLoginUser = EncryptedString(binding.linkEditProxyLoginUser.text.toString())
-            link.proxyLoginPasswd = EncryptedString(binding.linkEditProxyLoginPasswd.text.toString())
-            link.proxyLoginPrivate = EncryptedString(binding.linkEditProxyLoginPrivate.text.toString())
+            link.proxyLoginPasswd =
+                EncryptedString(binding.linkEditProxyLoginPasswd.text.toString())
+            link.proxyLoginPrivate =
+                EncryptedString(binding.linkEditProxyLoginPrivate.text.toString())
             link.directIp = EncryptedString(binding.linkEditDirectIp.text.toString())
             link.directMac = EncryptedString(binding.linkEditDirectMac.text.toString())
             link.remark = binding.linkEditRemark.text.toString()

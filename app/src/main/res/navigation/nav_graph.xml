@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/nav_graph"
-            app:startDestination="@id/LinkListFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph"
+        app:startDestination="@id/LinkListFragment">
 
     <fragment
             android:id="@+id/LinkListFragment"
@@ -13,7 +13,7 @@
 
         <action
                 android:id="@+id/action_LinkListFragment_to_LinkEditFragment"
-                app:destination="@id/LinkEditFragment"/>
+                app:destination="@id/LinkEditFragment" />
     </fragment>
     <fragment
             android:id="@+id/LinkEditFragment"
@@ -26,7 +26,7 @@
                 app:destination="@id/LinkListFragment">
             <argument
                     android:name="id"
-                    app:argType="integer"/>
+                    app:argType="integer" />
         </action>
     </fragment>
 </navigation>

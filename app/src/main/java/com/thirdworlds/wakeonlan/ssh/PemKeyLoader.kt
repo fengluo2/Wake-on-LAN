@@ -24,7 +24,10 @@ object PemKeyLoader {
 
         return when {
             header.contains("OPENSSH PRIVATE KEY") -> loadOpenSSHKey(pemString)
-            header.contains("RSA PRIVATE KEY") || header.contains("PRIVATE KEY") -> loadBouncyCastleKey(pemString)
+            header.contains("RSA PRIVATE KEY") || header.contains("PRIVATE KEY") -> loadBouncyCastleKey(
+                pemString
+            )
+
             else -> throw IllegalArgumentException("Unsupported key format: $header")
         }
     }

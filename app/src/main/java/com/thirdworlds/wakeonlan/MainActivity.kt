@@ -18,7 +18,14 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.gson.*
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonDeserializationContext
+import com.google.gson.JsonDeserializer
+import com.google.gson.JsonElement
+import com.google.gson.JsonPrimitive
+import com.google.gson.JsonSerializationContext
+import com.google.gson.JsonSerializer
 import com.google.gson.reflect.TypeToken
 import com.thirdworlds.wakeonlan.data.DatabaseManage
 import com.thirdworlds.wakeonlan.data.domain.Link
@@ -74,10 +81,10 @@ class MainActivity : AppCompatActivity() {
                 AlertDialog.Builder(this)
                     .setTitle("确认删除")
                     .setMessage(message)
-                    .setPositiveButton("确认") { dialog, which ->
+                    .setPositiveButton("确认") { _, _ ->
                         val database = DatabaseManage.getDataBase(applicationContext)
                         CoroutineScope(Dispatchers.IO).launch { database.linkDao().deleteAll() }
-                    }.setNegativeButton("取消") { dialog, which ->
+                    }.setNegativeButton("取消") { _, _ ->
                     }.create().show()
                 true
             }
@@ -94,15 +101,19 @@ class MainActivity : AppCompatActivity() {
                 CoroutineScope(Dispatchers.IO).launch {
                     val dataJson = getGson()
                         .toJson(database.linkDao().loadAll()?.first())
-                    val fileUri = FileUtil.exportToDownloadFile(applicationContext, dataJson, fileName)
+                    val fileUri =
+                        FileUtil.exportToDownloadFile(applicationContext, dataJson, fileName)
                     if (fileUri == null) {
-                        ToastUtil.showToast(applicationContext, getString(R.string.toast_export_fail));
+                        ToastUtil.showToast(
+                            applicationContext,
+                            getString(R.string.toast_export_fail)
+                        )
                     } else {
                         val filePath = FileUtil.getFilePathFromUri(applicationContext, fileUri)
                         ToastUtil.showToast(
                             applicationContext,
                             String.format(getString(R.string.toast_export_success), filePath)
-                        );
+                        )
                     }
                 }
                 true
