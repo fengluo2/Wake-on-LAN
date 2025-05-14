@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,7 +24,7 @@
                     android:id="@+id/link_edit_name_label"
                     android:layout_width="@dimen/link_edit_label_with"
                     android:layout_height="wrap_content"
-                    android:text="@string/link_edit_name_label"/>
+                    android:text="@string/link_edit_name_label" />
 
             <EditText
                     android:id="@+id/link_edit_name"
@@ -34,7 +33,7 @@
                     android:labelFor="@id/link_edit_name_label"
                     android:hint="@string/link_edit_name_hint"
                     android:autofillHints=""
-                    android:inputType="text"/>
+                    android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,7 +48,7 @@
                     android:id="@+id/link_edit_type_label"
                     android:layout_width="@dimen/link_edit_label_with"
                     android:layout_height="wrap_content"
-                    android:text="@string/link_edit_type_label"/>
+                    android:text="@string/link_edit_type_label" />
 
             <RadioGroup
                     android:id="@+id/link_edit_type"
@@ -58,7 +57,7 @@
                     android:orientation="horizontal"
                     android:labelFor="@id/link_edit_type_label"
                     android:autofillHints=""
-                    android:inputType="text"/>
+                    android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
@@ -81,7 +80,7 @@
                         android:id="@+id/link_edit_proxy_address_label"
                         android:layout_width="@dimen/link_edit_label_with"
                         android:layout_height="wrap_content"
-                        android:text="@string/link_edit_proxy_address_label"/>
+                        android:text="@string/link_edit_proxy_address_label" />
 
                 <EditText
                         android:id="@+id/link_edit_proxy_address"
@@ -90,7 +89,7 @@
                         android:labelFor="@id/link_edit_proxy_address_label"
                         android:hint="@string/link_edit_proxy_address_hint"
                         android:autofillHints=""
-                        android:inputType="text"/>
+                        android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
@@ -105,7 +104,7 @@
                         android:id="@+id/link_edit_proxy_port_label"
                         android:layout_width="@dimen/link_edit_label_with"
                         android:layout_height="wrap_content"
-                        android:text="@string/link_edit_proxy_port_label"/>
+                        android:text="@string/link_edit_proxy_port_label" />
 
                 <EditText
                         android:id="@+id/link_edit_proxy_port"
@@ -114,7 +113,7 @@
                         android:labelFor="@id/link_edit_proxy_port_label"
                         android:hint="@string/link_edit_proxy_port_hint"
                         android:autofillHints=""
-                        android:inputType="number"/>
+                        android:inputType="number" />
             </LinearLayout>
 
             <LinearLayout
@@ -129,7 +128,7 @@
                         android:id="@+id/link_edit_proxy_login_type_label"
                         android:layout_width="@dimen/link_edit_label_with"
                         android:layout_height="wrap_content"
-                        android:text="@string/link_edit_proxy_login_type_label"/>
+                        android:text="@string/link_edit_proxy_login_type_label" />
 
                 <RadioGroup
                         android:id="@+id/link_edit_proxy_login_type"
@@ -138,7 +137,7 @@
                         android:orientation="horizontal"
                         android:labelFor="@id/link_edit_proxy_login_type_label"
                         android:autofillHints=""
-                        android:inputType="text"/>
+                        android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
@@ -153,7 +152,7 @@
                         android:id="@+id/link_edit_proxy_login_user_label"
                         android:layout_width="@dimen/link_edit_label_with"
                         android:layout_height="wrap_content"
-                        android:text="@string/link_edit_proxy_login_user_label"/>
+                        android:text="@string/link_edit_proxy_login_user_label" />
 
                 <EditText
                         android:id="@+id/link_edit_proxy_login_user"
@@ -162,7 +161,7 @@
                         android:labelFor="@id/link_edit_proxy_login_user_label"
                         android:hint="@string/link_edit_proxy_login_user_hint"
                         android:autofillHints=""
-                        android:inputType="text"/>
+                        android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
@@ -180,7 +179,7 @@
                         android:id="@+id/link_edit_proxy_login_passwd_label"
                         android:layout_width="@dimen/link_edit_label_with"
                         android:layout_height="wrap_content"
-                        android:text="@string/link_edit_proxy_login_passwd_label"/>
+                        android:text="@string/link_edit_proxy_login_passwd_label" />
 
                 <EditText
                         android:id="@+id/link_edit_proxy_login_passwd"
@@ -189,7 +188,7 @@
                         android:labelFor="@id/link_edit_proxy_login_passwd_label"
                         android:hint="@string/link_edit_proxy_login_passwd_hint"
                         android:autofillHints=""
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword" />
             </LinearLayout>
 
             <LinearLayout
@@ -207,7 +206,7 @@
                         android:id="@+id/link_edit_proxy_login_private_label"
                         android:layout_width="@dimen/link_edit_label_with"
                         android:layout_height="wrap_content"
-                        android:text="@string/link_edit_proxy_login_private_label"/>
+                        android:text="@string/link_edit_proxy_login_private_label" />
 
                 <EditText
                         android:id="@+id/link_edit_proxy_login_private"
@@ -220,7 +219,7 @@
                         android:minLines="3"
                         android:maxLines="5"
                         android:gravity="top|start"
-                        android:scrollbars="vertical"/>
+                        android:scrollbars="vertical" />
             </LinearLayout>
         </LinearLayout>
 
@@ -236,7 +235,7 @@
                     android:id="@+id/link_edit_direct_ip_label"
                     android:layout_width="@dimen/link_edit_label_with"
                     android:layout_height="wrap_content"
-                    android:text="@string/link_edit_direct_ip_label"/>
+                    android:text="@string/link_edit_direct_ip_label" />
 
             <EditText
                     android:id="@+id/link_edit_direct_ip"
@@ -245,7 +244,7 @@
                     android:labelFor="@id/link_edit_direct_ip_label"
                     android:hint="@string/link_edit_direct_ip_hint"
                     android:autofillHints=""
-                    android:inputType="text"/>
+                    android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
@@ -260,7 +259,7 @@
                     android:id="@+id/link_edit_direct_mac_label"
                     android:layout_width="@dimen/link_edit_label_with"
                     android:layout_height="wrap_content"
-                    android:text="@string/link_edit_direct_mac_label"/>
+                    android:text="@string/link_edit_direct_mac_label" />
 
             <EditText
                     android:id="@+id/link_edit_direct_mac"
@@ -269,7 +268,7 @@
                     android:labelFor="@id/link_edit_direct_mac_label"
                     android:hint="@string/link_edit_direct_mac_hint"
                     android:autofillHints=""
-                    android:inputType="text"/>
+                    android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
@@ -284,7 +283,7 @@
                     android:id="@+id/link_edit_remark_label"
                     android:layout_width="@dimen/link_edit_label_with"
                     android:layout_height="wrap_content"
-                    android:text="@string/link_edit_remark_label"/>
+                    android:text="@string/link_edit_remark_label" />
 
             <EditText
                     android:id="@+id/link_edit_remark"
@@ -293,7 +292,7 @@
                     android:labelFor="@id/link_edit_remark_label"
                     android:hint="@string/link_edit_remark_hint"
                     android:autofillHints=""
-                    android:inputType="text"/>
+                    android:inputType="text" />
         </LinearLayout>
 
 
@@ -302,6 +301,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/save_link"
-                android:layout_marginTop="50dp"/>
+                android:layout_marginTop="50dp" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

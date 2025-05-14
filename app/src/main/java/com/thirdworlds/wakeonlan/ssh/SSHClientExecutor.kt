@@ -14,8 +14,7 @@ import java.nio.file.Path
 import java.security.KeyPair
 import java.security.Security
 import java.time.Duration
-import java.util.*
-import java.util.function.Supplier
+import java.util.EnumSet
 
 
 class SSHClientExecutor {
@@ -44,7 +43,7 @@ class SSHClientExecutor {
         System.setProperty("user.home", filesPath.toString()) // just in case
         PathUtils.setUserHomeFolderResolver { filesPath }
         System.setProperty("user.dir", filesPath.toString()) // just in case
-        OsUtils.setCurrentWorkingDirectoryResolver(Supplier { filesPath })
+        OsUtils.setCurrentWorkingDirectoryResolver { filesPath }
     }
 
     /**
@@ -54,8 +53,8 @@ class SSHClientExecutor {
         session = client?.connect(username, host, port)
             ?.verify(3000)
             ?.session
-        session?.addPasswordIdentity(password);
-        session?.auth()?.verify(3000);
+        session?.addPasswordIdentity(password)
+        session?.auth()?.verify(3000)
     }
 
     /**
@@ -65,9 +64,9 @@ class SSHClientExecutor {
         session = client?.connect(username, host, port)
             ?.verify(3000)
             ?.session
-        val keyPair: KeyPair? = PemKeyLoader.loadKeyPair(privateKey)
-        session?.addPublicKeyIdentity(keyPair);
-        session?.auth()?.verify(3000);
+        val keyPair: KeyPair = PemKeyLoader.loadKeyPair(privateKey)
+        session?.addPublicKeyIdentity(keyPair)
+        session?.auth()?.verify(3000)
     }
 
     // 执行单个命令并返回命令输出
@@ -75,16 +74,16 @@ class SSHClientExecutor {
         ByteArrayOutputStream().use { out ->
             ByteArrayOutputStream().use { err ->
                 session!!.createExecChannel(command).use { channel ->
-                    channel.setOut(out)
+                    channel.out = out
                     channel.setErr(err)
 
                     channel.open().verify(Duration.ofSeconds(10))
                     channel.waitFor(EnumSet.of(ClientChannelEvent.CLOSED), Duration.ofSeconds(30))
 
-                    val stdout = out.toString().trim { it <= ' ' }
-                    val stderr = err.toString().trim { it <= ' ' }
+                    val stdout = out.toString().trim()
+                    val stderr = err.toString().trim()
 
-                    if (!stderr.isEmpty()) {
+                    if (stderr.isNotEmpty()) {
                         return "[stderr] $stderr\n[stdout] $stdout"
                     }
                     return stdout

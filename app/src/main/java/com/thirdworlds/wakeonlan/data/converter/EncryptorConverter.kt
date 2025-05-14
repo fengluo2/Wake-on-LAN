@@ -7,7 +7,7 @@ import com.thirdworlds.wakeonlan.util.EncryptorUtil
 class EncryptorConverter {
 
     @TypeConverter
-    fun fromEncrypted(value: String?): EncryptedString? {
+    fun fromEncrypted(value: String?): EncryptedString {
         // 解密操作
         val data = EncryptorUtil.decrypt(value)
         return EncryptedString(data)

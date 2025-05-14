@@ -16,8 +16,8 @@ import java.net.DatagramSocket
 import java.net.InetAddress
 
 object SendWolUtil {
-    val ipv4Regex = Regex("^((25[0-5]|2[0-4]\\d|[0-1]?\\d{1,2})(\\.|$)){4}$")
-    val ipv6Regex =
+    private val ipv4Regex = Regex("^((25[0-5]|2[0-4]\\d|[0-1]?\\d{1,2})(\\.|$)){4}$")
+    private val ipv6Regex =
         Regex("^(?:[\\da-fA-F]{1,4}:){7}[\\da-fA-F]{1,4}\$|^(?:[\\da-fA-F]{1,4}:){1,7}:|^(?:[\\da-fA-F]{1,4}:){1,6}:[\\da-fA-F]{1,4}\$")
 
     fun sendWal(link: Link, context: Context) {
@@ -26,7 +26,8 @@ object SendWolUtil {
                 // 目标的广播地址
                 val broadcast = InetAddress.getByName(link.directIp!!.getData()!!)
                 // 将 MAC 地址转换为字节数组
-                val macBytes = link.directMac!!.getData()!!.split(":").map { it.toInt(16).toByte() }.toByteArray()
+                val macBytes = link.directMac!!.getData()!!.split(":").map { it.toInt(16).toByte() }
+                    .toByteArray()
                 // 构建魔法包
                 val magicPacket = ByteArray(102) // 魔法包的总大小是 102 字节
                 // 前6个字节是 0xFF
@@ -40,9 +41,13 @@ object SendWolUtil {
                 // 使用 DatagramSocket 发送魔法包
                 val socket = DatagramSocket()
                 socket.broadcast = true
-                val packet = DatagramPacket(magicPacket, magicPacket.size, broadcast, 9) // 9 是 WOL 的默认端口
+                val packet =
+                    DatagramPacket(magicPacket, magicPacket.size, broadcast, 9) // 9 是 WOL 的默认端口
                 socket.send(packet)
-                Log.d(this::class.simpleName, "成功发送 WOL 包到 ${link.directIp} - ${link.directMac}")
+                Log.d(
+                    this::class.simpleName,
+                    "成功发送 WOL 包到 ${link.directIp} - ${link.directMac}"
+                )
                 socket.close()
             }
 
@@ -104,7 +109,10 @@ object SendWolUtil {
                     ssh.close()
                     ToastUtil.showToast(
                         context,
-                        String.format(getString(context, R.string.toast_not_support_system_info), distro.lowercase())
+                        String.format(
+                            getString(context, R.string.toast_not_support_system_info),
+                            distro.lowercase()
+                        )
                     )
                     return
                 }
@@ -116,7 +124,10 @@ object SendWolUtil {
                     !commandMap.containsKey("install_wol") ||
                     !commandMap.containsKey("send_wol")
                 ) {
-                    ToastUtil.showToast(context, getString(context, R.string.toast_not_support_system))
+                    ToastUtil.showToast(
+                        context,
+                        getString(context, R.string.toast_not_support_system)
+                    )
                     ssh.close()
                     return
                 }
@@ -128,7 +139,11 @@ object SendWolUtil {
                 }
 
                 val sendCommand =
-                    String.format(commandMap["send_wol"]!!, link.directIp!!.getData(), link.directMac!!.getData())
+                    String.format(
+                        commandMap["send_wol"]!!,
+                        link.directIp!!.getData(),
+                        link.directMac!!.getData()
+                    )
                 ssh.executeCommand(sendCommand)
 
                 ssh.close()

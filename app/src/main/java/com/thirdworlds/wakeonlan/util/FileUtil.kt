@@ -36,11 +36,11 @@ object FileUtil {
             val type = split[0]
 
             // 如果是主存储（primary），直接获取文件路径
-            if ("primary" == type) {
-                filePath = File(context.getExternalFilesDir(null), split[1]).path
+            filePath = if ("primary" == type) {
+                File(context.getExternalFilesDir(null), split[1]).path
             } else {
                 // 处理其他存储设备的路径（如 SD 卡）
-                filePath = File(context.getExternalFilesDir(null), split[1]).path
+                File(context.getExternalFilesDir(null), split[1]).path
             }
         } else if (uri.scheme == "content") {
             // 如果是 content:// Uri，尝试从 MediaStore 获取路径

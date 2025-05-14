@@ -82,7 +82,7 @@ jobs:
           keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}  # 从 GitHub Secrets 中加载 keystore 密码
           keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}  # 从 GitHub Secrets 中加载密钥别名
           keyPassword: ${{ secrets.SIGNING_KEY_PASSWD }}  # 从 GitHub Secrets 中加载密钥密码
-          buildToolsVersion: 35.0.0
+          buildToolsVersion: 36.0.0
 
       - name: Sign Android debug apk
         if: steps.check_release.outputs.release_already_exists == 'false'
@@ -94,7 +94,7 @@ jobs:
           keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}  # 从 GitHub Secrets 中加载 keystore 密码
           keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}  # 从 GitHub Secrets 中加载密钥别名
           keyPassword: ${{ secrets.SIGNING_KEY_PASSWD }}  # 从 GitHub Secrets 中加载密钥密码
-          buildToolsVersion: 35.0.0
+          buildToolsVersion: 36.0.0
 
       - name: Read CHANGELOG.md
         if: steps.check_release.outputs.release_already_exists == 'false'
