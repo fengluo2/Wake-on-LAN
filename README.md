@@ -19,6 +19,10 @@ A lightweight Android app for sending Wake-on-LAN (WoL) magic packets over a loc
 <img src="https://github.com/fengluo2/Wake-on-LAN/blob/main/readme/1.jpg" width="270" alt="show">
 <img src="https://github.com/fengluo2/Wake-on-LAN/blob/main/readme/2.jpg" width="270" alt="show">
 
+## 📖 Documentation
+
+For detailed usage instructions, please refer to the [User Manual](USER_MANUAL.md).
+
 ## 📦 Installation
 
 You can install the app using one of the following methods:

@@ -19,6 +19,10 @@
 <img src="https://github.com/fengluo2/Wake-on-LAN/blob/main/readme/1.jpg" width="270" alt="show">
 <img src="https://github.com/fengluo2/Wake-on-LAN/blob/main/readme/2.jpg" width="270" alt="show">
 
+## 📖 使用文档
+
+详细的使用说明请参考 [操作手册](USER_MANUAL_zh.md)。
+
 ## 📦 安装方式
 
 你可以选择以下任一方式安装：
