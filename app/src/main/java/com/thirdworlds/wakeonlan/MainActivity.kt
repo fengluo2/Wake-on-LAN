@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.action_about -> true
-            else -> true
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
